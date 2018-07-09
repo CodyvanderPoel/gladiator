@@ -79,6 +79,12 @@ def test_heal_4():
     assert result == None
 
 
+def test_heal_5():
+    gladiator_a = new_gladiator(99, 15, 20, 50)
+    result = heal(gladiator_a)
+    assert result == None
+
+
 def test_is_dead():
     gladiator_a = new_gladiator(0, 30, 20, 50)
     result = is_dead(gladiator_a)
