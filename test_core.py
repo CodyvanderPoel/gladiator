@@ -85,6 +85,12 @@ def test_heal_5():
     assert result == None
 
 
+def test_heal_6():
+    gladiator_a = new_gladiator(90, 10, 20, 50)
+    result = heal(gladiator_a)
+    assert result == gladiator_a['Health']
+
+
 def test_is_dead():
     gladiator_a = new_gladiator(0, 30, 20, 50)
     result = is_dead(gladiator_a)
@@ -101,3 +107,9 @@ def test_is_dead_3():
     gladiator_a = new_gladiator(10, 30, 20, 50)
     result = is_dead(gladiator_a)
     assert result == None
+
+
+def test_is_dead_4():
+    gladiator_a = new_gladiator(-10, 30, 20, 50)
+    result = is_dead(gladiator_a)
+    assert result == True

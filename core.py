@@ -27,7 +27,7 @@ def attack(attacker, defender):
 
 
 def heal(gladiator):
-    if gladiator['Rage'] > 10 and gladiator['Health'] <= 95:
+    if gladiator['Rage'] >= 10 and gladiator['Health'] <= 95:
         gladiator['Rage'] = gladiator['Rage'] - 10
         gladiator['Health'] = gladiator['Health'] + 5
         return gladiator['Health']
@@ -36,5 +36,5 @@ def heal(gladiator):
 
 
 def is_dead(gladiator):
-    if gladiator['Health'] == 0:
+    if gladiator['Health'] <= 0:
         return True
