@@ -14,6 +14,28 @@ def new_gladiator(health, rage, damage_low, damage_high):
     return gladiator
 
 
+def paladin():
+    paladin = new_gladiator(115, 0, 25, 40)
+    return paladin
+
+
+def barbarian():
+    barbarian = new_gladiator(75, 50, 25, 35)
+    return barbarian
+
+
+def weapons_dic():
+    weapons = {
+        'Sword': 'Sword',
+        'Sword Attack': 10,
+        'Sword Rage': 5,
+        'War Axe': 'War Axe',
+        'War Axe Attack': 5,
+        'War Axe Rage': 10
+    }
+    return weapons
+
+
 def attack(attacker, defender):
     crit = randint(0, 100)
     attack = randint(attacker['Low Attack'], attacker['High Attack'])
@@ -22,14 +44,16 @@ def attack(attacker, defender):
         attacker['Rage'] = attacker['Rage'] * 0
     else:
         attacker['Rage'] = attacker['Rage'] + 15
-    defender['Health'] = defender['Health'] - attack
+    health = defender['Health'] - attack
+    defender['Health'] = max(health, 0)
     return defender['Health']
 
 
 def heal(gladiator):
     if gladiator['Rage'] >= 10 and gladiator['Health'] <= 95:
         gladiator['Rage'] = gladiator['Rage'] - 10
-        gladiator['Health'] = gladiator['Health'] + 5
+        health = gladiator['Health'] + 5
+        gladiator['Health'] = min(100, health)
         return gladiator['Health']
     else:
         return None
