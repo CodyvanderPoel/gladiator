@@ -35,8 +35,6 @@ def combatant_1_turn(name_a, user_a, name_b, user_b):
             break
         elif choice == 'P':
             print(name_a.upper(), 'PASSES!')
-            pass
-            break
         elif choice == 'Q':
             exit()
         else:
@@ -76,17 +74,17 @@ def combatant_2_turn(name_a, user_a, name_b, user_b):
 def battle(name_a, user_a, name_b, user_b):
 
     while True:
-
         if is_dead(user_a) == True:
             print(name_b.upper(), 'HAS FALLEN!')
             print(name_a.upper(), 'IS VICTORIOUS!')
             break
-
+            exit()
+        combatant_1_turn(name_a, user_a, name_b, user_b)
         if is_dead(user_b) == True:
             print(name_b.upper(), 'HAS FALLEN!')
             print(name_a.upper(), 'IS VICTORIOUS!')
             break
-        combatant_1_turn(name_a, user_a, name_b, user_b)
+            exit()
         combatant_2_turn(name_a, user_a, name_b, user_b)
 
 
@@ -95,7 +93,7 @@ def game_play():
     name_a = get_name()
     user_a = new_gladiator(100, 15, 20, 40)
     name_b = get_name_2()
-    user_b = new_gladiator(75, 30, 25, 45)
+    user_b = new_gladiator(100, 15, 20, 40)
     battle(name_a, user_a, name_b, user_b)
 
 
