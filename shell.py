@@ -59,7 +59,7 @@ def combatant_1_turn(player_1_name, player_1, player_2_name, player_2):
 
         print(player_1_name.upper(), '! It is your turn!')
         print(player_1_name.upper(), "'S STATS!", player_1['Health'], '|||',
-              player_1['Rage'])
+              player_1['Rage'], '|||', player_1['Precision'])
         print('WHAT SHALL YOU DO!?')
         print('----[A]TTACK')
         print('----[H]EAL')
@@ -70,26 +70,40 @@ def combatant_1_turn(player_1_name, player_1, player_2_name, player_2):
         if choice == 'A':
             print(player_1_name.upper(), 'ATTACKS', player_2_name.upper(), '!')
             attack(player_1, player_2)
+            print(player_1_name.upper(), "'S STATS!", player_1['Health'],
+                  '|||', player_1['Rage'], '|||', player_1['Precision'])
             print(player_2_name, "'s Health!:", player_2['Health'])
             break
         elif choice == 'H':
             print(player_1_name.upper(), 'HEALS!')
+            if player_1['Health'] > 100:
+                player_1['Health'] = 100
             heal(player_1)
+            print(player_1_name.upper(), "'S STATS!", player_1['Health'],
+                  '|||', player_1['Rage'], '|||', player_1['Precision'])
             break
         elif choice == 'E':
             print(player_1_name.upper(), 'HAS BECOME ENRAGED!')
             enrage(player_1)
+            print(player_1_name.upper(), "'S STATS!", player_1['Health'],
+                  '|||', player_1['Rage'], '|||', player_1['Precision'])
             break
         elif choice == 'P':
-            player_1['Rage'] += 20
+            player_1['Rage'] += 5
+            if player_1['Rage'] > 100:
+                player_1['Rage'] = 100
+            player_1['Precision'] += 5
+            if player_1['Precision'] > 100:
+                player_1['Precision'] = 100
             print(player_1_name.upper(), 'PASSES!')
+            print(player_1_name.upper(), "'S STATS!", player_1['Health'],
+                  '|||', player_1['Rage'], '|||', player_1['Precision'])
+            break
         elif choice == 'Q':
             print(player_1_name.upper(), 'HAS FORFEITED THEIR LIFE')
             exit()
         else:
             print("PLEASE CHOOSE A VALID OPITON")
-        print(player_1_name.upper(), "'S STATS!", player_1['Health'], '|||',
-              player_1['Rage'])
 
 
 def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
@@ -98,7 +112,7 @@ def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
 
         print(player_2_name.upper(), '! It is your turn!')
         print(player_2_name.upper(), "'S STATS!", player_2['Health'], '|||',
-              player_2['Rage'])
+              player_2['Rage'], '|||', player_2['Precision'])
         print('WHAT SHALL YOU DO!?')
         print('----[A]TTACK')
         print('----[H]EAL')
@@ -109,28 +123,42 @@ def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
         if choice == 'A':
             print(player_2_name.upper(), 'ATTACKS', player_1_name.upper(), '!')
             attack(player_2, player_1)
+            print(player_2_name.upper(), "'S STATS!", player_2['Health'],
+                  '|||', player_2['Rage'], '|||', player_2['Precision'])
             print(player_1_name, "'s Health!:", player_1['Health'])
             break
         elif choice == 'H':
             print(player_2_name.upper(), 'HEALS!')
+            if player_2['Health'] > 100:
+                player_2['Health'] = 100
             heal(player_2)
+            print(player_2_name.upper(), "'S STATS!", player_2['Health'],
+                  '|||', player_2['Rage'], '|||', player_2['Precision'])
             break
         elif choice == 'E':
             print(player_2_name.upper(), 'HAS BECOME ENRAGED!')
+            if player_2['Rage'] > 100:
+                player_2['Rage'] = 100
             enrage(player_2)
+            print(player_2_name.upper(), "'S STATS!", player_2['Health'],
+                  '|||', player_2['Rage'], '|||', player_2['Precision'])
             break
         elif choice == 'P':
-            player_2['Rage'] += 20
+            player_2['Rage'] += 5
+            if player_2['Rage'] > 100:
+                player_2['Rage'] = 100
+            player_2['Precision'] += 5
+            if player_2['Precision'] > 100:
+                player_2['Precision'] = 100
             print(player_2_name.upper(), 'PASSES!')
-            pass
+            print(player_2_name.upper(), "'S STATS!", player_2['Health'],
+                  '|||', player_2['Rage'], '|||', player_2['Precision'])
             break
         elif choice == 'Q':
             print(player_2_name.upper(), 'HAS FORFEITED THEIR LIFE')
             exit()
         else:
             print("PLEASE CHOOSE A VALID OPTION")
-            print(player_2_name.upper(), "'S STATS!", player_2['Health'],
-                  '|||', player_2['Rage'])
 
 
 def battle(player_1_name, player_1, player_2_name, player_2):
@@ -153,9 +181,9 @@ def battle(player_1_name, player_1, player_2_name, player_2):
 def game_play():
 
     player_1_name = get_name()
-    player_1 = new_gladiator(100, 15, 1, 40)
+    player_1 = new_gladiator(100, 15, 1, 15, 50)
     player_2_name = get_name_2()
-    player_2 = new_gladiator(100, 15, 1, 40)
+    player_2 = new_gladiator(100, 15, 1, 15, 50)
     weapons = weapons_dic()
     choose_weapons(player_1_name, player_2_name, player_1, player_2, weapons)
 

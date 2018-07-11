@@ -1,7 +1,7 @@
 from random import randint
 
 
-def new_gladiator(health, rage, damage_low, damage_high):
+def new_gladiator(health, rage, damage_low, damage_high, precision):
     '''Preconditions : Health must be in between 0 and 100!
                        Rage must be in between 0 and 100!
     '''
@@ -9,7 +9,8 @@ def new_gladiator(health, rage, damage_low, damage_high):
         'Health': health,
         'Rage': rage,
         'Low Attack': damage_low,
-        'High Attack': damage_high
+        'High Attack': damage_high,
+        'Precision': precision
     }
     return gladiator
 
@@ -37,16 +38,26 @@ def weapons_dic():
 
 
 def attack(attacker, defender):
+    hit_chance = randint(0, 100)
     crit = randint(0, 100)
-    attack = randint(attacker['Low Attack'], attacker['High Attack'])
-    if crit <= attacker['Rage']:
-        attack = attack * 2
-        attacker['Rage'] = attacker['Rage'] * 0
+    if hit_chance <= attacker['Precision']:
+        attack = randint(attacker['Low Attack'], attacker['High Attack'])
+        if crit <= attacker['Rage']:
+            attack = attack * 2
+            attacker['Rage'] = attacker['Rage'] * 0
+            attacker['Precision'] = attacker['Precision'] * .75
+            defender['Precision'] = defender['Precision'] * .95
+            print('CRITICAL!', attack, 'DAMAGE DONE!')
+        else:
+            attacker['Rage'] = attacker['Rage'] + 15
+            print('THE ATTACK LANDED! IT DEALT THIS MUCH DAMAGE!', attack)
+        health = defender['Health'] - attack
+        defender['Health'] = max(health, 0)
+
+        return defender['Health']
     else:
-        attacker['Rage'] = attacker['Rage'] + 15
-    health = defender['Health'] - attack
-    defender['Health'] = max(health, 0)
-    return defender['Health']
+        print('THE ATTACK MISSED!')
+        return None
 
 
 def heal(gladiator):
