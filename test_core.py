@@ -91,6 +91,30 @@ def test_heal_6():
     assert result == gladiator_a['Health']
 
 
+def test_enrage():
+    gladiator = new_gladiator(20, 0, 10, 15)
+    result = enrage(gladiator)
+    assert result == None
+
+
+def test_enrage2():
+    gladiator = new_gladiator(100, 76, 10, 15)
+    result = enrage(gladiator)
+    assert result == gladiator['Rage']
+
+
+def test_enrage3():
+    gladiator = new_gladiator(0, 0, 10, 15)
+    result = enrage(gladiator)
+    assert result == None
+
+
+def test_enrage4():
+    gladiator = new_gladiator(100, 0, 10, 15)
+    result = enrage(gladiator)
+    assert result == gladiator['Rage']
+
+
 def test_is_dead():
     gladiator_a = new_gladiator(0, 30, 20, 50)
     result = is_dead(gladiator_a)

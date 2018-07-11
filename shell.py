@@ -1,19 +1,16 @@
 from core import *
 
-
-def choose_class(paladin, barbarian):
-    classes = [paladin, barbarian]
-    print classes
-    choice = input('CHOOSE YOUR CLASS').upper().strip()
-    if choice == 'PALADIN':
-        print('THE PALADIN! A WARRIOR OF THE LIGHT! FIGHTING FOR HIS FAITH HE STANDS HERE BEFORE YOU!')
-        print(paladin)
-        surety = input('Are you sure you want this class?').upper().strip()
-        if surety == "YES":
-            return paladin
-        elif surety == "NO":
-            
-
+#def choose_class(player_1_name, player_2_name, player_1, player_2, paladin, barbarian):
+#    classes = [paladin, barbarian]
+#    print classes
+#    choice = input('CHOOSE YOUR CLASS').upper().strip()
+#    if choice == 'PALADIN':
+#        print('THE PALADIN! A WARRIOR OF THE LIGHT! FIGHTING FOR HIS FAITH HE STANDS HERE BEFORE YOU!')
+#        print(paladin)
+#        surety = input('Are you sure you want this class?').upper().strip()
+#        if surety == "YES":
+#            return paladin
+#        elif surety == "NO":
 
 
 def get_name():
@@ -28,131 +25,141 @@ def get_name_2():
     return name
 
 
-def choose_weapons(name_a, name_b, user_a, user_b, weapons):
+def choose_weapons(player_1_name, player_2_name, player_1, player_2, weapons):
     print(weapons)
-    choice = input(f'{name_a} CHOOSE YOUR WEAPON!').upper().strip()
+    choice = input(f'{player_1_name} CHOOSE YOUR WEAPON!').upper().strip()
     if choice == 'SWORD':
-        user_a['Low Attack'] += 10
-        user_a['High Attack'] += 10
-        user_a['Rage'] += 5
+        player_1['Low Attack'] += 10
+        player_1['High Attack'] += 10
+        player_1['Rage'] += 5
         print('The sword? It is a good choice')
     if choice == 'WARAXE':
-        user_a['Low Attack'] += 5
-        user_a['High Attack'] += 5
-        user_a['Rage'] += 10
+        player_1['Low Attack'] += 5
+        player_1['High Attack'] += 5
+        player_1['Rage'] += 10
 
         print('The war axe you say? It can be devastating in the right hands')
-    choice = input(f'{name_b} CHOOSE YOUR WEAPON!').upper().strip()
+    choice = input(f'{player_2_name} CHOOSE YOUR WEAPON!').upper().strip()
     if choice == 'SWORD':
-        user_b['Low Attack'] += 10
-        user_b['High Attack'] += 10
-        user_b['Rage'] += 5
+        player_2['Low Attack'] += 10
+        player_2['High Attack'] += 10
+        player_2['Rage'] += 5
 
         print('The sword? It is a good choice')
     if choice == 'WARAXE':
-        user_b['Low Attack'] += 5
-        user_b['High Attack'] += 5
-        user_b['Rage'] += 10
+        player_2['Low Attack'] += 5
+        player_2['High Attack'] += 5
+        player_2['Rage'] += 10
         print('The war axe you say? It can be devastating in the right hands')
 
 
-def combatant_1_turn(name_a, user_a, name_b, user_b):
+def combatant_1_turn(player_1_name, player_1, player_2_name, player_2):
 
     while True:
 
-        print(name_a.upper(), '! It is your turn!')
-        print(name_a.upper(), "'S STATS!", user_a['Health'], '|||',
-              user_a['Rage'])
+        print(player_1_name.upper(), '! It is your turn!')
+        print(player_1_name.upper(), "'S STATS!", player_1['Health'], '|||',
+              player_1['Rage'])
         print('WHAT SHALL YOU DO!?')
         print('----[A]TTACK')
         print('----[H]EAL')
+        print('----[E]NRAGE')
         print('----[P]ASS')
         print('----[Q]UIT')
         choice = input('CHOOSE NOW!').upper().strip()
         if choice == 'A':
-            print(name_a.upper(), 'ATTACKS', name_b.upper(), '!')
-            attack(user_a, user_b)
-            print(name_b, "'s Health!:", user_b['Health'])
+            print(player_1_name.upper(), 'ATTACKS', player_2_name.upper(), '!')
+            attack(player_1, player_2)
+            print(player_2_name, "'s Health!:", player_2['Health'])
             break
         elif choice == 'H':
-            print(name_a.upper(), 'HEALS!')
-            heal(user_a)
+            print(player_1_name.upper(), 'HEALS!')
+            heal(player_1)
+            break
+        elif choice == 'E':
+            print(player_1_name.upper(), 'HAS BECOME ENRAGED!')
+            enrage(player_1)
             break
         elif choice == 'P':
-            user_a['Rage'] += 20
-            print(name_a.upper(), 'PASSES!')
+            player_1['Rage'] += 20
+            print(player_1_name.upper(), 'PASSES!')
         elif choice == 'Q':
-            print(name_a.upper(), 'HAS FORFEITED THEIR LIFE')
+            print(player_1_name.upper(), 'HAS FORFEITED THEIR LIFE')
             exit()
         else:
             print("PLEASE CHOOSE A VALID OPITON")
-        print(name_a.upper(), "'S STATS!", user_a['Health'], '|||',
-              user_a['Rage'])
+        print(player_1_name.upper(), "'S STATS!", player_1['Health'], '|||',
+              player_1['Rage'])
 
 
-def combatant_2_turn(name_a, user_a, name_b, user_b):
+def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
 
     while True:
 
-        print(name_b.upper(), '! It is your turn!')
-        print(name_b.upper(), "'S STATS!", user_b['Health'], '|||',
-              user_b['Rage'])
+        print(player_2_name.upper(), '! It is your turn!')
+        print(player_2_name.upper(), "'S STATS!", player_2['Health'], '|||',
+              player_2['Rage'])
         print('WHAT SHALL YOU DO!?')
         print('----[A]TTACK')
         print('----[H]EAL')
+        print('----[E]NRAGE')
         print('----[P]ASS')
         print('----[Q]UIT')
         choice = input('CHOOSE NOW!').upper().strip()
         if choice == 'A':
-            print(name_b.upper(), 'ATTACKS', name_a.upper(), '!')
-            attack(user_b, user_a)
-            print(name_a, "'s Health!:", user_a['Health'])
+            print(player_2_name.upper(), 'ATTACKS', player_1_name.upper(), '!')
+            attack(player_2, player_1)
+            print(player_1_name, "'s Health!:", player_1['Health'])
             break
         elif choice == 'H':
-            print(name_b.upper(), 'HEALS!')
-            heal(user_b)
+            print(player_2_name.upper(), 'HEALS!')
+            heal(player_2)
+            break
+        elif choice == 'E':
+            print(player_2_name.upper(), 'HAS BECOME ENRAGED!')
+            enrage(player_2)
             break
         elif choice == 'P':
-            user_b['Rage'] += 20
-            print(name_b.upper(), 'PASSES!')
+            player_2['Rage'] += 20
+            print(player_2_name.upper(), 'PASSES!')
             pass
             break
         elif choice == 'Q':
-            print(name_b.upper(), 'HAS FORFEITED THEIR LIFE')
+            print(player_2_name.upper(), 'HAS FORFEITED THEIR LIFE')
             exit()
         else:
             print("PLEASE CHOOSE A VALID OPTION")
-            print(name_b.upper(), "'S STATS!", user_b['Health'], '|||',
-                  user_b['Rage'])
+            print(player_2_name.upper(), "'S STATS!", player_2['Health'],
+                  '|||', player_2['Rage'])
 
 
-def battle(name_a, user_a, name_b, user_b):
+def battle(player_1_name, player_1, player_2_name, player_2):
 
     while True:
-        if is_dead(user_a) == True:
-            print(name_a.upper(), 'HAS FALLEN!')
-            print(name_b.upper(), 'IS VICTORIOUS!')
+        if is_dead(player_1) == True:
+            print(player_1_name.upper(), 'HAS FALLEN!')
+            print(player_2_name.upper(), 'IS VICTORIOUS!')
             break
             exit()
-        combatant_1_turn(name_a, user_a, name_b, user_b)
-        if is_dead(user_b) == True:
-            print(name_b.upper(), 'HAS FALLEN!')
-            print(name_a.upper(), 'IS VICTORIOUS!')
+        combatant_1_turn(player_1_name, player_1, player_2_name, player_2)
+        if is_dead(player_2) == True:
+            print(player_2_name.upper(), 'HAS FALLEN!')
+            print(player_1_name.upper(), 'IS VICTORIOUS!')
             break
             exit()
-        combatant_2_turn(name_a, user_a, name_b, user_b)
+        combatant_2_turn(player_1_name, player_1, player_2_name, player_2)
 
 
 def game_play():
 
-    name_a = get_name()
-    user_a = new_gladiator(100, 15, 1, 40)
-    name_b = get_name_2()
-    user_b = new_gladiator(100, 15, 1, 40)
+    player_1_name = get_name()
+    player_1 = new_gladiator(100, 15, 1, 40)
+    player_2_name = get_name_2()
+    player_2 = new_gladiator(100, 15, 1, 40)
     weapons = weapons_dic()
-    choose_weapons(name_a, name_b, user_a, user_b, weapons)
+    choose_weapons(player_1_name, player_2_name, player_1, player_2, weapons)
 
-    battle(name_a, user_a, name_b, user_b)
+    battle(player_1_name, player_1, player_2_name, player_2)
 
 
 def main():

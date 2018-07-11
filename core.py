@@ -59,6 +59,18 @@ def heal(gladiator):
         return None
 
 
+def enrage(gladiator):
+    if gladiator['Health'] >= 21:
+        gladiator['Health'] -= 20
+        enraged = randint(25, 75)
+        gladiator['Rage'] += enraged
+        if gladiator['Rage'] > 100:
+            gladiator['Rage'] = 100
+        return gladiator['Rage']
+    else:
+        return None
+
+
 def is_dead(gladiator):
     if gladiator['Health'] <= 0:
         return True
