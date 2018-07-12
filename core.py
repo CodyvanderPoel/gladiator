@@ -1,7 +1,7 @@
 from random import randint
 
 
-def new_gladiator(health, rage, damage_low, damage_high, precision):
+def new_gladiator(health, rage, damage_low, damage_high, precision, mana):
     '''Preconditions : Health must be in between 0 and 100!
                        Rage must be in between 0 and 100!
     '''
@@ -10,7 +10,8 @@ def new_gladiator(health, rage, damage_low, damage_high, precision):
         'Rage': rage,
         'Low Attack': damage_low,
         'High Attack': damage_high,
-        'Precision': precision
+        'Precision': precision,
+        'Mana': mana
     }
     return gladiator
 
@@ -58,6 +59,15 @@ def attack(attacker, defender):
     else:
         print('THE ATTACK MISSED!')
         return None
+
+
+def magic(attacker, defender):
+    spells = [
+        '[A]ard Requirements : 5 Mana', '[I]gni Requirements : 15 Mana',
+        '[G]reat Heal Requirements: 25 Mana',
+        '[R]eckoning Requirements: 50 Mana'
+    ]
+    return spells
 
 
 def heal(gladiator):

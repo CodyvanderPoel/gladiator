@@ -10,7 +10,7 @@ def player_name():
 
 
 def player_stats():
-    your_stats = new_gladiator(100, 10, 10, 20, 50)
+    your_stats = new_gladiator(100, 10, 10, 20, 50, 0)
     return your_stats
 
 
@@ -20,7 +20,7 @@ def gladiator():
 
 
 def enemy_glad():
-    glad_stats = new_gladiator(100, 10, 10, 20, 50)
+    glad_stats = new_gladiator(100, 10, 10, 20, 50, 0)
     return glad_stats
 
 
@@ -30,7 +30,7 @@ def goblin():
 
 
 def enemy_gob():
-    gob_stats = new_gladiator(100, 15, 15, 25, 45)
+    gob_stats = new_gladiator(100, 15, 15, 25, 45, 0)
     return gob_stats
 
 
@@ -40,7 +40,7 @@ def boss_1():
 
 
 def gnash():
-    maw_stats = new_gladiator(150, 25, 20, 25, 55)
+    maw_stats = new_gladiator(150, 25, 20, 25, 55, 0)
     return maw_stats
 
 
@@ -56,7 +56,7 @@ def intro(name):
 
 def enemy_ai_turn(name, stats, enemy_name, enemy_stats):
     while True:
-        
+
         print('It is', enemy_name, "'s turn!".upper())
         print(enemy_name.upper(), "'S STATS", enemy_stats['Health'], '|||',
               enemy_stats['Rage'], '|||', enemy_stats['Precision'])
@@ -138,11 +138,51 @@ def battle(player_1_name, player_1, player_2_name, player_2):
             print(player_2_name.upper(), 'HAS FALLEN!')
             print(player_1_name.upper(), 'IS VICTORIOUS!')
             break
-            exit()
+            return True
         enemy_ai_turn(player_1_name, player_1, player_2_name, player_2)
 
 
 def level_1_1(name, stats, enemy_name, enemy_stats):
+    print(
+        '\n\nA trap door triggers beneath you as you fall into a dark and spiraling tunnel.\nOn the way down you tumble and hit your head, knocking you unconscious.\nYou awaken in what must be The Pit.\nWithout a moment\'s notice you are charged by your first opponent. THE GLADIATOR!'
+    )
+    results = battle(name, stats, enemy_name, enemy_stats)
+    if results == True:
+        return True
+
+
+def level_1_2(name, stats, enemy_name, enemy_stats):
+    print(
+        '\n\nThe gladiator lays upon the ground pooling in his own blood as you carry on, hoping to find a way out.\nYou see a ray of light and begin to follow it until you stumble upon a goblin blocking the path.\nYou cannot go around him. You must go through him.'
+    )
+    print('''      -. -. `.  / .-' _.'  _
+     .--`. `. `| / __.-- _' `
+    '.-.  \  \ |  /   _.' `_
+    .-. \  `  || |  .' _.-' `.
+  .' _ \ '  -    -'  - ` _.-.
+   .' `. %%%%%   | %%%%% _.-.`-
+ .' .-. ><(@)> ) ( <(@)>< .-.`.
+   (("`(   -   | |   -   )'"))
+  / \\#)\    (.(_).)    /(#//\
+ ' / ) ((  /   | |   \  )) (`.`.
+ .'  (.) \ .md88o88bm. / (.) \)
+   / /| / \ `Y88888Y' / \ | \ \
+ .' / O  / `.   -   .' \  O \ \\
+  / /(O)/ /| `.___.' | \\(O) \
+   / / / / |  |   |  |\  \  \ \
+   / / // /|  |   |  |  \  \ \  VK
+ _.--/--/'( ) ) ( ) ) )`\-\-\-._
+( ( ( ) ( ) ) ( ) ) ( ) ) ) ( ) )
+''')
+    result = battle(name, stats, enemy_name, enemy_stats)
+    if result == True:
+        return True
+
+
+def level1_boss(name, stats, enemy_name, enemy_stats):
+    print(
+        'After defeating the goblin you move along the dim path until you enter a medium sized room that is well lit.\nAt the back of the room you see a staircase and hope to the gods it is the way out.\nAs you rush to the door a thunderous crash occurs behind you as a gate slams barricading the staircase.\nYou turn and witness the horror know as Gnashmaw the Goblin Gladiator.\nThe battle commences. '
+    )
     battle(name, stats, enemy_name, enemy_stats)
 
 
@@ -157,6 +197,8 @@ def game_play():
     enemy_3 = boss_1()
     gm = gnash()
     level_1_1(name, stats, enemy_1, glad)
+    level_1_2(name, stats, enemy_2, gob)
+    level1_boss(name, stats, enemy_3, gm)
 
 
 def main():
