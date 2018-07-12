@@ -223,7 +223,9 @@ def level1_boss(name, stats, enemy_name, enemy_stats):
         'After defeating the goblin you move along the dim path until you enter a medium sized room that is well lit.\nAt the back of the room you see a staircase and hope to the gods it is the way out.\nAs you rush to the door a thunderous crash occurs behind you as a gate slams barricading the staircase.\nYou turn and witness the horror know as Gnashmaw the Goblin Gladiator.\nThe battle commences. '
     )
     sleep(3)
-    battle(name, stats, enemy_name, enemy_stats)
+    result = battle(name, stats, enemy_name, enemy_stats)
+    if result == True:
+        return True
 
 
 def game_play():
