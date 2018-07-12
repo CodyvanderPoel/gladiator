@@ -99,6 +99,7 @@ def combatant_1_turn(player_1_name, player_1, player_2_name, player_2):
                     print(player_1_name.upper(), 'CAST AARD!')
                     print('IT DEALT 10 DAMAGE AND CAUSED',
                           player_2_name.upper(), 'TO STUMBLE!')
+                break
             elif spell == 'I':
                 if player_1['Mana'] >= 15:
                     player_2['Health'] -= 20
@@ -109,6 +110,7 @@ def combatant_1_turn(player_1_name, player_1, player_2_name, player_2):
                         'FLAMES BURST FROM YOUR HAND IGNITING', player_2_name,
                         '! THE FLAMES DISPERSE QUICKLY, SLIGHTLY DISRUPTING THEIR VISION AND DEALING 20 DAMAGE! '
                     )
+                break
             elif spell == 'G':
                 if player_1['Mana'] >= 25:
                     player_1['Mana'] -= 25
@@ -117,6 +119,7 @@ def combatant_1_turn(player_1_name, player_1, player_2_name, player_2):
                     print(
                         'A HEAVENLY LIGHT DESCENDS GRANTING YOU RESTORED STRENGTH'
                     )
+                break
             elif spell == 'R':
                 if player_1['Mana'] == 50:
                     player_1['Mana'] -= 50
@@ -126,6 +129,7 @@ def combatant_1_turn(player_1_name, player_1, player_2_name, player_2):
                     print(
                         'WILL ANYONE SURVIVE AS THE HEAVENS CRASH AROUND YOU AND YOUR OPPONENT!?'
                     )
+                break
             else:
                 print('Please choose an actual spell')
         elif choice == 'E':
@@ -212,7 +216,7 @@ def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
                     print(player_2_name.upper(), 'CAST AARD!')
                     print('IT DEALT 10 DAMAGE AND CAUSED',
                           player_1_name.upper(), 'TO STUMBLE!')
-                    break
+                break
             elif spell == 'I':
                 if player_2['Mana'] >= 15:
                     player_1['Health'] -= 20
@@ -223,7 +227,7 @@ def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
                         'FLAMES BURST FROM YOUR HAND IGNITING', player_1_name,
                         '! THE FLAMES DISPERSE QUICKLY, SLIGHTLY DISRUPTING THEIR VISION AND DEALING 20 DAMAGE! '
                     )
-                    break
+                break
             elif spell == 'G':
                 if player_2['Mana'] >= 25:
                     player_2['Mana'] -= 25
@@ -232,7 +236,7 @@ def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
                     print(
                         'A HEAVENLY LIGHT DESCENDS GRANTING YOU RESTORED STRENGTH'
                     )
-                    break
+                break
             elif spell == 'R':
                 if player_2['Mana'] == 50:
                     player_2['Mana'] -= 50
@@ -242,7 +246,7 @@ def combatant_2_turn(player_1_name, player_1, player_2_name, player_2):
                     print(
                         'WILL ANYONE SURVIVE AS THE HEAVENS CRASH AROUND YOU AND YOUR OPPONENT!?'
                     )
-                    break
+                break
             else:
                 print('Please choose an actual spell')
         elif choice == 'E':
